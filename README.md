@@ -9,7 +9,7 @@
       - contributes
       - contributes
 
-    - firstName lastName ([name](url))
+    - Pratham Patel ([Pratham083](https://github.com/Pratham083))
       - contributes
       - contributes
       - contributes
