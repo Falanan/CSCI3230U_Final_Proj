@@ -15,7 +15,7 @@
       - contributes
       - contributes
       
-    - firstName lastName ([name](url))
+    - Azan Sikder ([Axxaan](https://github.com/Axxaan))
       - contributes
       - contributes
       - contributes
