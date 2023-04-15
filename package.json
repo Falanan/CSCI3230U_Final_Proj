@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/Falanan/CSCI3230U_Final_Proj#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^7.0.3",
+    "pug": "^3.0.2",
+    "uuid": "^9.0.0"
   }
 }

@@ -1,0 +1,37 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Home
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css')
+    link(rel='stylesheet' href='styles/homepage.css')
+    script(src='https://unpkg.com/vue@3/dist/vue.global.js')
+body
+    section.hero.is-fullheight.bg-hero.is-dark
+        .hero-head
+            .container
+                nav.navbar.is-dark(role='navigation' aria-label='main navigation')
+                    .navbar-brand
+                        a.navbar-burger(role='button' aria-label='menu' aria-expanded='false' data-target='navbarBasicExample')
+                            span(aria-hidden='true')
+                            span(aria-hidden='true')
+                            span(aria-hidden='true')
+                    .navbar-menu
+                        .navbar-start
+                            a.navbar-item(href='/homepage')
+                                | Home
+                            a.navbar-item(href='products.html')
+                                | Products
+                            a.navbar-item(href='about.html')
+                                | About
+                        .navbar-end
+                            if (username && username !== '')
+                                a.navbar-item(href='/logout')
+                                    | Logout
+                                .navbar-item(href='cart.html')
+                                    img(src='images/cart.png')
+                            else
+                                a.navbar-item(href='/login')
+                                    | Login
+        block content
+    

@@ -1,0 +1,21 @@
+extends toplevel
+block content 
+    .hero-body
+        .container
+            .columns.is-centered
+                .column.is-one-third
+                .column.is-one-third
+                    p.title.has-text-centered
+                        | Login
+                    form.box(action='/processLogin' method='post')
+                        .field
+                            label.label Username
+                            .control
+                                input.input.is-primary(type='text' name='username' placeholder='Username')
+                        .field
+                            label.label Password
+                            .control
+                                input.input.is-primary(type='password' name='password' placeholder='Password')
+                                p.is-size-7.has-text-danger #{error}
+                        button.button.is-primary(type='submit') Sign in
+                .column.is-one-third

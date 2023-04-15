@@ -1,0 +1,39 @@
+extends toplevel
+block content
+    .hero-body
+        .container
+            .columns
+                .column
+                    p.title
+                        if (username && username !== '')
+                            | Welcome #{username}!
+                        else 
+                            | Welcome to Our Ecommerce Website!
+                    p.subtitle
+                        | Enjoy our unmatched prices
+                if (typeof username === 'undefined' || username === '')
+                    .column.is-one-third
+                        p.title.has-text-centered
+                            | Create an Account
+                        form.box(action='/signup' method='post')
+                            .field
+                                label.label Email
+                                .control
+                                    input.input.is-primary(type='text' name='email' placeholder='example@gmail.com')
+                                    if (errObj.emailErr && errObj.emailErr !== '')
+                                        p.is-size-7.has-text-danger #{errObj.emailErr}
+                            .field
+                                label.label Username
+                                .control
+                                    input.input.is-primary(type='text' name='username' placeholder='Username')
+                                    if (errObj.usernameErr && errObj.usernameErr !== '')
+                                        p.is-size-7.has-text-danger #{errObj.usernameErr}
+                            .field
+                                label.label Password
+                                .control
+                                    input.input.is-primary(type='password' name='password' placeholder='Password')
+                                    if (errObj.passwordErr && errObj.passwordErr !== '')
+                                        p.is-size-7.has-text-danger #{errObj.passwordErr}
+                            .field
+                                .control
+                                    button.button.is-primary(type='submit') Sign up
