@@ -1,26 +1,60 @@
 $(document).ready(function(){
-    fetchData()
+    // fetchDetailedData();
+    fetchCategoriesData();
+
+    fetch('https://dummyjson.com/products/categories')
+    .then(res => res.json())
+    .then(console.log);
 })
 
 
-
-
-
-function fetchData() {
-    fetch('https://dummyjson.com/products')
+function fetchCategoriesData(params) {
+    fetch('https://dummyjson.com/products/categories')
     .then(res => res.json())
-    .then((data) => {
-        // console.log(data.products[0]);
-        fillData(data.products);
+    .then(categories => {
+        const tagsContainer = document.querySelector('.tags');
+        categories.forEach(category => {
+        const tag = document.createElement('a');
+        tag.classList.add('tag');
+        // tag.classList.add('tag');
+        tag.textContent = category;
+        // tag.href = `#category/${category}`; // add a link to the category page
+        tag.addEventListener('click', (event) => {
+            event.preventDefault();
+            const categoryName = category;
+            fetchDetailedData(categoryName);
+          });
+        tagsContainer.appendChild(tag);
+        });
     });
+
 }
 
 
 
-function fillData(products) {
-    console.log("Products: ", products);
+function fetchDetailedData(category) {
+    fetch('https://dummyjson.com/products/category/' + category)
+    .then(res => res.json())
+    .then((data) => {
+        // console.log(data.products[0]);
+        fillDetailedData(data.products);
+    });
+}
+
+function removeAllChild(container) {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+}
+
+
+
+function fillDetailedData(products) {
+    // console.log("Products: ", products);
+    
 
     const container = document.getElementById("rowholder1");
+    removeAllChild(container);
 
     for (let index = 0; index < products.length; index++) {
         const product = products[index];
@@ -79,6 +113,20 @@ function fillData(products) {
 
         cardContent.appendChild(content);
         card.appendChild(cardContent);
+
+        // Create the "Buy Now" button
+        const buyButton = document.createElement('button');
+        buyButton.textContent = 'Add to Cart';
+        buyButton.classList.add('button', 'is-primary');
+
+        // Add an event listener to the button
+        buyButton.addEventListener('click', () => {
+            // Do something when the button is clicked
+            console.log(`Buy ${product.title} for $${product.price.toFixed(2)}`);
+        });
+
+        // Append the button to the card
+        card.appendChild(buyButton);
 
         // Append the card to the container
         rowHolder.appendChild(card);
