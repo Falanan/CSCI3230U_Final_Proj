@@ -118,6 +118,7 @@ function fillDetailedData(products) {
         const buyButton = document.createElement('button');
         buyButton.textContent = 'Add to Cart';
         buyButton.classList.add('button', 'is-primary');
+        buyButton.style.margin = "10px";
 
         // Add an event listener to the button
         buyButton.addEventListener('click', () => {
