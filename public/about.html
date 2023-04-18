@@ -22,7 +22,7 @@
                     
                     <div id="navbarBasicExample" class="navbar-menu">
                         <div class="navbar-start">
-                        <a class="navbar-item" href="homepage.html">
+                        <a class="navbar-item" href="/homepage">
                             Home
                         </a>
                         <a class="navbar-item" href="products.html">
@@ -51,6 +51,75 @@
             </p>
             </div>
         </div>
-      </section>
+    </section>
+
+
+    <div class="container">
+        <div class="columns is-multiline">
+            <div class="column is-one-third">
+            <div class="box has-text-centered">
+                <h2 class="title">Total Products</h2>
+                <p class="subtitle" id="totalProducts">0</p>
+            </div>
+            </div>
+            <div class="column is-one-third">
+            <div class="box has-text-centered">
+                <h2 class="title">Average Product Price</h2>
+                <p class="subtitle" id="averagePrice">$0</p>
+            </div>
+            </div>
+            <div class="column is-one-third">
+            <div class="box has-text-centered">
+                <h2 class="title">Most Expensive Product</h2>
+                <p class="subtitle" id="mostExpensive">N/A</p>
+            </div>
+            </div>
+            <div class="column is-dark">
+            <div class="box has-text-centered">
+                <h2 class="title">Highest Rated Product </h2>
+                <p class="subtitle" id="highestRating">N/A</p>
+            </div>
+            </div>
+            <div class="column is-one-third">
+                <div class="box has-text-centered">
+                    <h2 class="title">Products Per Category </h2>
+                    <p class="subtitle" id="category-chart"></p>
+            </div>
+            </div>
+            
+            <div class="column is-multiline">
+                <div class="box ">
+                    <h2 class="title">Stock by Category </h2>
+                    <p class="subtitle" id="stock-by-category-chart"></p>
+            </div>
+            </div>
+            <div class="column is-multiline">
+                <div class="box ">
+                    <h2 class="title">Top 10 Rated Products </h2>
+                    <p class="subtitle" id="top-rated-products-chart"></p>
+            </div>
+            </div>
+            <div class="column is-multiline">
+                <div class="box ">
+                    <h2 class="title">Average Price Per Category </h2>
+                    <p class="subtitle" id="average-price-per-category-chart"></p>
+            </div>
+            </div>
+            <div class="column is-multiline">
+                <div class="box ">
+                    <h2 class="title">Top Discounted Products </h2>
+                    <p class="subtitle" id="top-discounted-products-chart"></p>
+            </div>
+            </div>
+            
+            
+
+        </div>
+    </div>
+
+
+    <script src="/scripts/about.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
 </body>
 </html>
