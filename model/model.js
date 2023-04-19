@@ -35,8 +35,5 @@ let accountSchema = new Schema({
     collection: 'accounts'
 });
 
-
-// Here we export our module (node.js) to make it available in a different file (savingdata.js)
-// See L23SL14 - An example Schema
 module.exports.Account = mongoose.model('account', accountSchema);
 module.exports.Item = mongoose.model('item', itemSchema);
