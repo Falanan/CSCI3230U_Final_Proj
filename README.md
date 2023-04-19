@@ -20,7 +20,7 @@
       - contributes
 
     - Santhosh Chelvaranjan - 100787779
-       - N/A
+      - N/A
 
     - Seodong (Andrew) Lim - 100748897
       - N/A
