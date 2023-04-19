@@ -8,10 +8,9 @@
       - Products.js
 
     - Pratham Patel ([Pratham083](https://github.com/Pratham083)) - 100787085
-      - contributes
-      - contributes
-      - contributes
-      - contributes
+      - index.js
+      - model.js
+      - toplevel.pug, cart.pug, homepage.pug, login.pug
       
     - Azan Sikder ([Axxaan](https://github.com/Axxaan)) - 100786662
       - about.js
