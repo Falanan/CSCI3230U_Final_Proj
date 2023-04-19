@@ -1,10 +1,6 @@
 $(document).ready(function(){
     // fetchDetailedData();
     fetchCategoriesData();
-
-    fetch('https://dummyjson.com/products/categories')
-    .then(res => res.json())
-    .then(console.log);
 })
 
 
@@ -36,7 +32,7 @@ function fetchDetailedData(category) {
     fetch('https://dummyjson.com/products/category/' + category)
     .then(res => res.json())
     .then((data) => {
-        // console.log(data.products[0]);
+        console.log(data.products[0]);
         fillDetailedData(data.products);
     });
 }
@@ -158,6 +154,13 @@ function fillDetailedData(products) {
         content.appendChild(document.createElement('br'));
         content.appendChild(document.createElement('br'));
         content.appendChild(price);
+
+        content.appendChild(document.createElement('br'));
+        // content.appendChild(document.createElement('br'));
+        const discountPercentage = document.createElement('p');
+        discountPercentage.classList.add('subtitle', 'is-6');
+        discountPercentage.textContent = `Discount Percentage: ${product.discountPercentage.toFixed(2)} %`;
+        content.appendChild(discountPercentage);
 
         cardContent.appendChild(content);
         card.appendChild(cardContent);
