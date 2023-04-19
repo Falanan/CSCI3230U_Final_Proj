@@ -175,6 +175,21 @@ function fillDetailedData(products) {
         buyButton.addEventListener('click', () => {
             // Do something when the button is clicked
             console.log(`Buy ${product.title} for $${product.price.toFixed(2)}`);
+            // data to send to server
+            let data = {productName : product.title, image : product.images[0], price : product.price.toFixed(2)};
+            fetch('/addToCart', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+              })
+              .then(() => {
+                console.log('Added to cart!');
+              })
+              .catch((error) => {
+                console.error('Error adding to cart', error);
+              });
         });
 
         // Append the button to the card

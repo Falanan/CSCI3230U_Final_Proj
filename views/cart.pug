@@ -1,0 +1,40 @@
+extends toplevel 
+block content
+    .hero-body(style="align-items: initial;")
+        .container
+            h1.title Cart
+            - for(let i = 0; i < cart.length; i+=4)
+                .columns
+                    .column.is-8
+                        .card
+                            .card-content
+                                .columns
+                                    .column.is-3
+                                        img(src=`${cart[i+2]}`)
+                                    .column.is-3
+                                        p.is-size-5.has-text-weight-bold #{cart[i]}
+                                    .column.is-2
+                                        p.is-size-5.has-text-weight-bold Price:
+                                        p.is-size-5 $#{cart[i+1]}
+                                    .column.is-2
+                                        form(action='/updateCart',method='post')
+                                            p.is-size-5.has-text-weight-bold Quantity:
+                                            .control
+                                                input.input(type='number', name='amount' value=`${cart[i+3]}`, min='1')
+                                                input(type="hidden" name='productName' value=`${cart[i]}`)
+                                            button.button.is-primary(type='submit') Update
+                                    .column.is-2
+                                        p.is-size-5.has-text-weight-bold Total:
+                                        p.is-size-5 $#{cart[i+1] * cart[i+3]}
+                    if (i == 0)
+                        .column.is-4
+                            .card
+                                .card-content
+                                    p.is-size-3.has-text-weight-bold Summary
+                                    .columns
+                                        .column.is-8
+                                            p.is-size-5 Subtotal:
+                                        .column.is-3
+                                            p.is-size-5 $#{sum}
+                                    a.button.is-primary.is-fullwidth(href='/purchase') Purchase Items
+

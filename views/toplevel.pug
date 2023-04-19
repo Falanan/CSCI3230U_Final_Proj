@@ -28,7 +28,7 @@ body
                             if (username && username !== '')
                                 a.navbar-item(href='/logout')
                                     | Logout
-                                .navbar-item(href='cart.html')
+                                a.navbar-item(href='/cart')
                                     img(src='images/cart.png')
                             else
                                 a.navbar-item(href='/login')
