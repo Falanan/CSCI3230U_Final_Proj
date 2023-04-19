@@ -15,8 +15,11 @@ function fetchProductData() {
             category: item.category,
             stock: item.stock,
             discount: item.discountPercentage,
+            brand: item.brand,
           };
         });
+        
+        
         const categoryData = products.reduce((categories, product) => {
           if (!categories[product.category]) {
             categories[product.category] = 1;
@@ -37,6 +40,39 @@ function fetchProductData() {
         
         const topRatedProducts = getTopRatedProducts(products);
 
+        function getProductsPerCategory(products) {
+          const categoryCounts = {};
+        
+          products.forEach(product => {
+            if (categoryCounts[product.category]) {
+              categoryCounts[product.category]++;
+            } else {
+              categoryCounts[product.category] = 1;
+            }
+          });
+        
+          return Object.entries(categoryCounts).map(([category, count]) => ({ category, count }));
+        }
+        
+        const productsPerCategory = getProductsPerCategory(products);
+
+        function getProductsPerBrand(products) {
+          const brandCounts = {};
+        
+          products.forEach(product => {
+            if (brandCounts[product.brand]) {
+              brandCounts[product.brand]++;
+            } else {
+              brandCounts[product.brand] = 1;
+            }
+          });
+        
+          return Object.entries(brandCounts).map(([brand, count]) => ({ brand, count }));
+        }
+        
+        const productsPerBrand = getProductsPerBrand(products);
+        
+        
         function getAveragePricePerCategory(products) {
           const categories = {};
         
@@ -63,20 +99,151 @@ function fetchProductData() {
         }
         
         const topDiscountedProducts = getTopDiscountedProducts(products, 5);
+        const stockData = aggregateStockByCategory(products);
 
+        
     
         displayProductStatistics(products);
-        drawCategoryChart(chartData);
-        const stockData = aggregateStockByCategory(products);
+        // drawCategoryChart(chartData);
         drawStockByCategoryChart(stockData);
         drawTopRatedProductsChart(topRatedProducts);
         drawAveragePricePerCategoryChart(averagePricePerCategoryData);
         drawTopDiscountedProductsChart(topDiscountedProducts);
+        drawProductsPerCategoryPieChart(productsPerCategory);
+        drawPieChart(productsPerBrand);
+       
 
       } 
     });
 }
+//create a top 10 and others category for the brand piechart (drawPieChart)
+function prepareDataForPieChart(products, limit) {
+  const brandCounts = products.reduce((acc, product) => {
+    acc[product.brand] = (acc[product.brand] || 0) + 1;
+    return acc;
+  }, {});
 
+  const sortedBrands = Object.entries(brandCounts)
+    .sort((a, b) => b[1] - a[1]);
+
+  const topBrands = sortedBrands.slice(0, limit);
+  const otherBrandsCount = sortedBrands.slice(limit).reduce((acc, brand) => acc + brand[1], 0);
+
+  if (otherBrandsCount > 0) {
+    topBrands.push(["Others", otherBrandsCount]);
+  }
+
+  return topBrands;
+}
+function drawPieChart(data) {
+  const width = 400;
+  const height = 400;
+  const radius = Math.min(width, height) / 2;
+  const dataN = prepareDataForPieChart(data, 8);
+
+  const svg = d3.select("#pie-chart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+  const pie = d3.pie()
+    .value(d => d[1]); 
+
+  const arc = d3.arc()
+    .innerRadius(0)
+    .outerRadius(radius);
+
+  const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+  const arcs = svg.selectAll("g.arc")
+    .data(pie(dataN))
+    .enter()
+    .append("g")
+    .attr("class", "arc");
+
+  arcs.append("path")
+    .attr("d", arc)
+    .attr("fill", (d, i) => color(i));
+
+ 
+  const total = dataN.reduce((acc, item) => acc + item[1], 0);
+
+  
+
+
+  const legend = d3.select("#pie-chart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+  const legendRectSize = 18;
+  const legendSpacing = 4;
+
+  const legendData = dataN.map((item, index) => ({ label: item[0], color: color(index) }));
+
+  const legendItems = legend.selectAll('.legend-item')
+    .data(legendData)
+    .enter()
+    .append('g')
+    .attr('class', 'legend-item')
+    .attr('transform', (d, i) => `translate(0,${i * (legendRectSize + legendSpacing)})`);
+
+  legendItems.append('rect')
+    .attr('width', legendRectSize)
+    .attr('height', legendRectSize)
+    .style('fill', d => d.color)
+    .style('stroke', d => d.color);
+
+  legendItems.append('text')
+    .attr('x', legendRectSize + legendSpacing)
+    .attr('y', legendRectSize - legendSpacing)
+    .text(d => d.label);
+   
+
+    
+}
+
+
+function drawProductsPerCategoryPieChart(data) {
+  const width = 400;
+  const height = 400;
+  const radius = Math.min(width, height) / 2;
+
+  const svg = d3.select("#products-per-category-pie-chart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+  const pie = d3.pie()
+    .value(d => d.count);
+
+  const arc = d3.arc()
+    .innerRadius(0)
+    .outerRadius(radius);
+
+  const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+  const arcs = svg.selectAll("g.arc")
+    .data(pie(data))
+    .enter()
+    .append("g")
+    .attr("class", "arc");
+
+  arcs.append("path")
+    .attr("d", arc)
+    .attr("fill", (d, i) => color(i));
+
+  arcs.append("text")
+    .attr("transform", d => `translate(${arc.centroid(d)})`)
+    .attr("text-anchor", "middle")
+    .text(d => d.data.category);
+}
 function drawTopDiscountedProductsChart(data) {
   const margin = { top: 20, right: 20, bottom: 100, left: 50 };
   const width = 600 - margin.left - margin.right;
@@ -286,42 +453,43 @@ function displayProductStatistics(products) {
     document.getElementById('mostExpensive').innerText = mostExpensiveProduct.name + `: $${mostExpensiveProduct.price.toFixed(2)}`;
   }
 
-  function drawCategoryChart(data) {
-    const width = 500;
-    const height = 200;
-    const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+  //bar chart version of category chart, using pie chart instead
+  // function drawCategoryChart(data) {
+  //   const width = 500;
+  //   const height = 200;
+  //   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
   
-    const x = d3.scaleBand()
-      .domain(data.map(d => d.category))
-      .rangeRound([margin.left, width - margin.right])
-      .padding(0.1);
+  //   const x = d3.scaleBand()
+  //     .domain(data.map(d => d.category))
+  //     .rangeRound([margin.left, width - margin.right])
+  //     .padding(0.1);
   
-    const y = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.count)])
-      .range([height - margin.bottom, margin.top]);
+  //   const y = d3.scaleLinear()
+  //     .domain([0, d3.max(data, d => d.count)])
+  //     .range([height - margin.bottom, margin.top]);
   
-    const svg = d3.select("#category-chart")
-      .append("svg")
-      .attr("viewBox", [0, 0, width, height]);
+  //   const svg = d3.select("#category-chart")
+  //     .append("svg")
+  //     .attr("viewBox", [0, 0, width, height]);
   
-    svg.append("g")
-      .attr("fill", "steelblue")
-      .selectAll("rect")
-      .data(data)
-      .join("rect")
-      .attr("x", d => x(d.category))
-      .attr("y", d => y(d.count))
-      .attr("height", d => y(0) - y(d.count))
-      .attr("width", x.bandwidth());
+  //   svg.append("g")
+  //     .attr("fill", "steelblue")
+  //     .selectAll("rect")
+  //     .data(data)
+  //     .join("rect")
+  //     .attr("x", d => x(d.category))
+  //     .attr("y", d => y(d.count))
+  //     .attr("height", d => y(0) - y(d.count))
+  //     .attr("width", x.bandwidth());
   
-    svg.append("g")
-      .call(d3.axisLeft(y))
-      .attr("transform", `translate(${margin.left},0)`);
+  //   svg.append("g")
+  //     .call(d3.axisLeft(y))
+  //     .attr("transform", `translate(${margin.left},0)`);
   
-    svg.append("g")
-      .call(d3.axisBottom(x))
-      .attr("transform", `translate(0,${height - margin.bottom})`);
-  }
+  //   svg.append("g")
+  //     .call(d3.axisBottom(x))
+  //     .attr("transform", `translate(0,${height - margin.bottom})`);
+  // }
   
   
   fetchProductData();
