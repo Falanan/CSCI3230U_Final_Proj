@@ -66,17 +66,6 @@ function fillDetailedData(products) {
 
 
         // Create previous and next buttons
-// const prevButton = document.createElement('button');
-// prevButton.textContent = '<';
-// prevButton.classList.add('button', 'is-primary', 'prev-button');
-// const nextButton = document.createElement('button');
-// nextButton.textContent = '>';
-// nextButton.classList.add('button', 'is-primary', 'next-button');
-
-// // Append the buttons to the card image
-// cardImage.appendChild(prevButton);
-// cardImage.appendChild(nextButton);
-
         const prevButton = document.createElement('button');
         prevButton.textContent = 'Prev';
         prevButton.classList.add('button', 'is-primary');
@@ -165,7 +154,7 @@ function fillDetailedData(products) {
         cardContent.appendChild(content);
         card.appendChild(cardContent);
 
-        // Create the "Buy Now" button
+        // Create the "Add to Cart" button
         const buyButton = document.createElement('button');
         buyButton.textContent = 'Add to Cart';
         buyButton.classList.add('button', 'is-primary');

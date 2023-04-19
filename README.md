@@ -3,32 +3,24 @@
 # About Us
 
 -  Our team consists of the following members, with their contributions listed:
-    - Wenbo Zhang ([Falanan](https://github.com/Falanan))
-      - contributes
-      - contributes
-      - contributes
-      - contributes
+    - Wenbo Zhang ([Falanan](https://github.com/Falanan)) - 100778036
+      - Products HTML Page
+      - Products.js
 
-    - Pratham Patel ([Pratham083](https://github.com/Pratham083))
+    - Pratham Patel ([Pratham083](https://github.com/Pratham083)) - 100787085
       - contributes
       - contributes
       - contributes
       - contributes
       
-    - Azan Sikder ([Axxaan](https://github.com/Axxaan))
+    - Azan Sikder ([Axxaan](https://github.com/Axxaan)) - 100786662
       - contributes
       - contributes
       - contributes
       - contributes
 
-    - firstName lastName ([name](url))
-      - contributes
-      - contributes
-      - contributes
-      - contributes
+    - Santhosh Chelvaranjan - 100787779
+       - N/A
 
-    - firstName lastName ([name](url))
-      - contributes
-      - contributes
-      - contributes
-      - contributes
+    - Seodong (Andrew) Lim - 100748897
+      - N/A
