@@ -3,6 +3,17 @@ block content
     .hero-body(style="align-items: initial;")
         .container
             h1.title Cart
+            if (cart.length == 0)
+                .column.is-4
+                        .card
+                            .card-content
+                                p.is-size-3.has-text-weight-bold Summary
+                                .columns
+                                    .column.is-8
+                                        p.is-size-5 Subtotal:
+                                    .column.is-3
+                                        p.is-size-5 $#{sum}
+                                a.button.is-primary.is-fullwidth(href='/purchase') Purchase Items
             - for(let i = 0; i < cart.length; i+=4)
                 .columns
                     .column.is-8
@@ -24,8 +35,8 @@ block content
                                                 input(type="hidden" name='productName' value=`${cart[i]}`)
                                             button.button.is-primary(type='submit') Update
                                     .column.is-2
-                                        p.is-size-5.has-text-weight-bold Price:
-                                        p.is-size-5 $#{cart[i+1]}
+                                        p.is-size-5.has-text-weight-bold Total:
+                                        p.is-size-5 $#{cart[i+1] * cart[i+3]}
                                     .column.is-1
                                         form(action='/removeItem',method='post')
                                             input(type="hidden" name='productName' value=`${cart[i]}`)

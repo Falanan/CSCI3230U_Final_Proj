@@ -1,6 +1,6 @@
 // Some code was taken from Lecture 23's example (savingdata.js)
 
-let globalCart = [];
+let globalCart = []; // used as the global cart, since the array in the schema seemed to not work
 
 // Import express. Supported by Node.js, lets us include modules in our project.
 let express = require('express');
