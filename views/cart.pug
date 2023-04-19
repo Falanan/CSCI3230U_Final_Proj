@@ -11,7 +11,7 @@ block content
                                 .columns
                                     .column.is-3
                                         img(src=`${cart[i+2]}`)
-                                    .column.is-3
+                                    .column.is-2
                                         p.is-size-5.has-text-weight-bold #{cart[i]}
                                     .column.is-2
                                         p.is-size-5.has-text-weight-bold Price:
@@ -24,8 +24,12 @@ block content
                                                 input(type="hidden" name='productName' value=`${cart[i]}`)
                                             button.button.is-primary(type='submit') Update
                                     .column.is-2
-                                        p.is-size-5.has-text-weight-bold Total:
-                                        p.is-size-5 $#{cart[i+1] * cart[i+3]}
+                                        p.is-size-5.has-text-weight-bold Price:
+                                        p.is-size-5 $#{cart[i+1]}
+                                    .column.is-1
+                                        form(action='/removeItem',method='post')
+                                            input(type="hidden" name='productName' value=`${cart[i]}`)
+                                            button.button.is-danger(type="submit") X
                     if (i == 0)
                         .column.is-4
                             .card

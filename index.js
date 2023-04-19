@@ -94,6 +94,13 @@ app.post('/signup', (request, response) => {
 
 });
 
+app.post('/removeItem', (request, response) => {
+    let pname = request.body.productName;
+    let ind = globalCart.indexOf(pname);
+    globalCart.splice(ind, 4);
+    reloadCart(request, response);
+});
+
 app.post('/processLogin', (request, response) => {
 
     let uname = request.body.username;
