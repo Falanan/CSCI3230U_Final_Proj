@@ -14,11 +14,9 @@
       - contributes
       
     - Azan Sikder ([Axxaan](https://github.com/Axxaan)) - 100786662
-      - contributes
-      - contributes
-      - contributes
-      - contributes
-
+      - about.js
+      - about.html
+      
     - Santhosh Chelvaranjan - 100787779
       - N/A
 
