@@ -68,14 +68,62 @@ function fillDetailedData(products) {
         const cardImage = document.createElement('div');
         cardImage.classList.add('card-image');
 
+
+        // Create previous and next buttons
+// const prevButton = document.createElement('button');
+// prevButton.textContent = '<';
+// prevButton.classList.add('button', 'is-primary', 'prev-button');
+// const nextButton = document.createElement('button');
+// nextButton.textContent = '>';
+// nextButton.classList.add('button', 'is-primary', 'next-button');
+
+// // Append the buttons to the card image
+// cardImage.appendChild(prevButton);
+// cardImage.appendChild(nextButton);
+
+        const prevButton = document.createElement('button');
+        prevButton.textContent = 'Prev';
+        prevButton.classList.add('button', 'is-primary');
+        prevButton.style.position = 'absolute';
+        prevButton.style.top = '50%';
+        prevButton.style.left = '0';
+        prevButton.style.transform = 'translateY(-50%)';
+        prevButton.style.zIndex = 1;
+
+        const nextButton = document.createElement('button');
+        nextButton.textContent = 'Next';
+        nextButton.classList.add('button', 'is-primary');
+        nextButton.style.position = 'absolute';
+        nextButton.style.top = '50%';
+        nextButton.style.right = '0';
+        nextButton.style.transform = 'translateY(-50%)';
+        nextButton.style.zIndex = 1;
+
+        let imageIndex = 0;
+
+        prevButton.addEventListener('click', () => {
+            imageIndex = (imageIndex - 1 + product.images.length) % product.images.length;
+            image.src = product.images[imageIndex];
+        });
+
+        nextButton.addEventListener('click', () => {
+            imageIndex = (imageIndex + 1) % product.images.length;
+            image.src = product.images[imageIndex];
+        });
+
+        cardImage.appendChild(prevButton);
+        cardImage.appendChild(nextButton);
+
+        
+
         const figure = document.createElement('figure');
         figure.classList.add('image', 'is-4by3');
 
         const image = document.createElement('img');
         image.src = product.images[0];
         image.alt =  product.title + 'image';
-        image.width = 1280;
-        image.height = 960;
+        // image.width = 1280;
+        // image.height = 960;
 
         figure.appendChild(image);
         cardImage.appendChild(figure);
