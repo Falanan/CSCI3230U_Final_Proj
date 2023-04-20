@@ -39,7 +39,7 @@ Video Tutorial Link: ([Web Development Group Project (Ecommerce Website)](https:
 ##### 1. Clone or Download this project into your local disk
 ##### 2. Enter the "CSCI3230U_Final_Proj" folder in command line tools
 Or the folder you named this project.
-##### 3. Use "npm install" to install the packages requirednod
+##### 3. Use "npm install" to install the packages required
 ##### 4. Run "nodemon" and enjoy your journey
 Note: There is no demo account, and you need to create your own account at the very beginning.
 
