@@ -40,7 +40,7 @@ Video Tutorial Link: ([Web Development Group Project (Ecommerce Website)](https:
 ##### 2. Enter the "CSCI3230U_Final_Proj" folder in command line tools
 Or the folder you named this project.
 ##### 3. Use "npm install" to install the packages required
-##### 4. Run "nodemon" and enjoy your journey
+##### 4. Run "nodemon" or "node index.js" command and enjoy your journey
 Note: There is no demo account, and you need to create your own account at the very beginning.
 
 # References
