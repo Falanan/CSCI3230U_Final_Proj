@@ -29,7 +29,7 @@ In this project, our team completed a scalable e-commerce website that connects 
 For demonstration purposes, we have cited data from this site: ([dummyJSON](https://dummyjson.com))
 
 ## Technology used for this project
-HTML, CSS, JavaScript, VUE.js, jQuery, NodeJs, D3
+HTML, CSS, JavaScript, Pug templating, jQuery, NodeJs, D3
 
 ### How to configure the local runtime environment
 NodeJs Installation Guide: ([Download and Install NodeJs](https://nodejs.org/en))
