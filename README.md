@@ -33,7 +33,7 @@ HTML, CSS, JavaScript, Pug templating, jQuery, D3, NodeJs, Express, Mongoose, Mo
 
 ### How to configure the local runtime environment
 NodeJs Installation Guide: ([Download and Install NodeJs](https://nodejs.org/en))
-
+MongoDB Installation Guide: ([Install MongoDB](https://www.mongodb.com/docs/manual/installation/))
 # How to run this project
 Video Tutorial Link: ([Web Development Group Project (Ecommerce Website)](https://youtu.be/QjW18u77GSk))
 ##### 1. Clone or Download this project into your local disk

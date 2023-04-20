@@ -29,11 +29,11 @@ In this project, our team completed a scalable e-commerce website that connects 
 For demonstration purposes, we have cited data from this site: ([dummyJSON](https://dummyjson.com))
 
 ## Technology used for this project
-HTML, CSS, JavaScript, Pug templating, jQuery, NodeJs, D3
+HTML, CSS, JavaScript, Pug templating, jQuery, D3, NodeJs, Express, Mongoose, MongoDB
 
 ### How to configure the local runtime environment
 NodeJs Installation Guide: ([Download and Install NodeJs](https://nodejs.org/en))
-
+MongoDB Installation Guide: ([Install MongoDB](https://www.mongodb.com/docs/manual/installation/))
 # How to run this project
 Video Tutorial Link: ([Web Development Group Project (Ecommerce Website)](https://youtu.be/QjW18u77GSk))
 ##### 1. Clone or Download this project into your local disk
